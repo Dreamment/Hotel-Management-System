@@ -22,6 +22,7 @@ int main() {
         while(choice == '1'){
             system("cls");
             cout<<"\t\tHotel Management System by Dreamment\n"
+                  "\t\t\tLogin Screen\n"
                   "\t\t1. Customer Login\n"
                   "\t\t2. Manager Login\n"
                   "\t\t3. Previous Menu\n"
@@ -108,7 +109,6 @@ int main() {
                 }
             }
             while (choice2 == '2'){
-                //TODO: Manager Login
                 system("cls");
                 cout<<"\t\tHotel Management System by Dreamment\n"
                       "\t\t\tManager Login"
@@ -202,7 +202,159 @@ int main() {
             }
         }
         while (choice == '2'){
-            //TODO: Register
+            system("cls");
+            cout<<"\t\tHotel Management System\n"
+                  "\t\t\tRegister Screen"
+                  "\n\n\t\t1. Register as Customer"
+                  "\n\t\t2. Register as Manager"
+                  "\n\t\t3. Previous Menu"
+                  "\n\t\t0. Exit"
+                  "\n\t\tEnter your choice: ";
+            char choice2 = getch();
+            fflush(stdin);
+            while (choice2 != '1' && choice2 != '2' && choice2 != '3' && choice2 != '0'){
+                cout<<"\n\t\tInvalid Choice. Please try again: ";
+                choice2 = getch();
+                fflush(stdin);
+            }
+            while (choice2 == '1'){
+                system("cls");
+                cout<<"\t\tHotel Management System\n"
+                      "\t\tCustomer Register Screen"
+                      "\n\n\t\tEnter your username: ";
+                string username;
+                cin>>username;
+                fflush(stdin);
+                cout<<"\t\tEnter your password: ";
+                string password;
+                cin>>password;
+                fflush(stdin);
+                cout<<"\t\tEnter your password again:";
+                string password2;
+                cin>>password2;
+                fflush(stdin);
+                cout<<"\t\tEnter your name: ";
+                string name;
+                cin>>name;
+                fflush(stdin);
+                cout<<"\t\tEnter your surname: ";
+                string surname;
+                cin>>surname;
+                fflush(stdin);
+                cout<<"\t\tEnter your email: ";
+                string email;
+                cin>>email;
+                fflush(stdin);
+                cout<<"\t\tEnter your phone number: ";
+                string phone_number;
+                cin>>phone_number;
+                fflush(stdin);
+                bool register_status = false;
+                admin myAdmin;
+                try {
+                    register_status = myAdmin.customer_register(username,password,password2,email,phone_number,name,surname);
+                }
+                catch (invalid_argument &e){
+                    cerr<<"Error while registering: "<<e.what();
+                    choice2 = 0;
+                    cout<<"Existing system. Press anything to continue.";
+                    getch();
+                    break;
+                }
+                if (register_status){
+                    cout<<"\n\t\tYou have successfully registered. Press anything to continue.";
+                    getch();
+                    choice2 = 0;
+                    break;
+                }
+                else {
+                    cout<<"\n\t\tYou entered wrong information. Do you want to try again?(y/n) ";
+                    char choice3 = getch();
+                    fflush(stdin);
+                    while (choice3 != 'y' && choice3 != 'Y' && choice3 != 'n' && choice3 != 'N'){
+                        cout<<"\n\t\tInvalid choice. Please try again: ";
+                        choice3 = getch();
+                        fflush(stdin);
+                    }
+                    if (choice3 == 'n' || choice3 == 'N'){
+                        choice2 = 0;
+                        break;
+                    }
+                }
+            }
+            while (choice2 == '2'){
+                system("cls");
+                cout<<"\t\tHotel Management System\n"
+                      "\t\tCustomer Register Screen"
+                      "\n\n\t\tEnter your username: ";
+                string username;
+                cin>>username;
+                fflush(stdin);
+                cout<<"\t\tEnter your password: ";
+                string password;
+                cin>>password;
+                fflush(stdin);
+                cout<<"\t\tEnter your password again:";
+                string password2;
+                cin>>password2;
+                fflush(stdin);
+                cout<<"\t\tEnter your name: ";
+                string name;
+                cin>>name;
+                fflush(stdin);
+                cout<<"\t\tEnter your surname: ";
+                string surname;
+                cin>>surname;
+                fflush(stdin);
+                cout<<"\t\tEnter your email: ";
+                string email;
+                cin>>email;
+                fflush(stdin);
+                cout<<"\t\tEnter your phone number: ";
+                string phone_number;
+                cin>>phone_number;
+                fflush(stdin);
+                bool register_status = false;
+                admin myAdmin;
+                try {
+                    register_status = myAdmin.manager_register(username,password,password2,email,phone_number,name,surname);
+                }
+                catch (invalid_argument &e){
+                    cerr<<"Error while registering: "<<e.what();
+                    choice2 = 0;
+                    cout<<"Existing system. Press anything to continue.";
+                    getch();
+                    break;
+                }
+                if (register_status){
+                    cout<<"\n\t\tYou have successfully registered. Press anything to continue.";
+                    getch();
+                    choice2 = 0;
+                    break;
+                }
+                else {
+                    cout<<"\n\t\tYou entered wrong information. Do you want to try again?(y/n) ";
+                    char choice3 = getch();
+                    fflush(stdin);
+                    while (choice3 != 'y' && choice3 != 'Y' && choice3 != 'n' && choice3 != 'N'){
+                        cout<<"\n\t\tInvalid choice. Please try again: ";
+                        choice3 = getch();
+                        fflush(stdin);
+                    }
+                    if (choice3 == 'n' || choice3 == 'N'){
+                        choice2 = 0;
+                        break;
+                    }
+                }
+            }
+            if (choice2 == '3'){
+                choice = '9';
+                break;
+            }
+            if (choice2 == '0'){
+                choice = '0';
+                break;
+            }
         }
         if (choice == '0'){
             system("cls");
